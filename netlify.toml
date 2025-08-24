@@ -1,0 +1,20 @@
+[build]
+  publish = "_site"
+  functions = "functions"
+  command = "npx @11ty/eleventy"
+
+[[redirects]]
+  from = "/members/*"
+  to = "/members/index.html"
+  status = 200
+  conditions = { Role = ["subscriber", "admin"] }
+
+[[redirects]]
+  from = "/members/*"
+  to = "/paywall/index.html"
+  status = 302
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200

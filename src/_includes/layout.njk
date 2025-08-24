@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or site.name }}</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://js.stripe.com/v3"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">{{ site.name }}</a>
+    <nav class="nav">
+      <a href="/paywall/">Subscribe</a>
+      <a href="/members/">Members</a>
+      <button id="loginBtn" class="button secondary">Log in</button>
+      <button id="logoutBtn" class="button danger" style="display:none;">Log out</button>
+    </nav>
+  </header>
+
+  <main>{{ content | safe }}</main>
+
+  <footer class="site-footer">
+    <p>&copy; {{ (new Date()).getFullYear() }} {{ site.name }}. All rights reserved.</p>
+  </footer>
+
+  <script src="/assets/main.js"></script>
+</body>
+</html>

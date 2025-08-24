@@ -1,0 +1,17 @@
+---
+layout: layout.njk
+title: {{ site.name }} — Dog training made simple
+---
+
+<section class="hero">
+  <div class="hero-card">
+    <span class="kicker">Pocket Trainer</span>
+    <h1>Personalized dog training in your pocket.</h1>
+    <p>{{ site.cta }}</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+      <a class="button" href="/paywall/">Subscribe</a>
+      <button class="button secondary" onclick="netlifyIdentity && netlifyIdentity.open('login')">Log in</button>
+    </div>
+    <p class="notice">This week: House training made simple · Loose‑leash walking 101 · Enrichment games</p>
+  </div>
+</section>
