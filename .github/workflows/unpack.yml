@@ -1,24 +1,49 @@
-name: Unpack ZIP
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title or site.name }}</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://js.stripe.com/v3"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">{{ site.name }}</a>
+    <nav class="nav">
+      <a href="/paywall/">Subscribe</a>
+      <a href="/members/">Members</a>
+      <button id="loginBtn" class="button secondary">Log in</button>
+      <button id="logoutBtn" class="button danger" style="display:none">Log out</button>
+    </nav>
+  </header>
 
-on:
-  workflow_dispatch:  # allows manual run from the Actions tab
+  <main>
+    {{ content | safe }}
+  </main>
 
-permissions:
-  contents: write
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> {{ site.name }}. All rights reserved.</p>
+  </footer>
 
-jobs:
-  unzip:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  <script src="/assets/main.js"></script>
+  <script>
+    // set current year without involving Nunjucks
+    var y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
 
-      - name: Unzip archive
-        run: |
-          unzip -o pockettrainer_clean_download.zip -d .
-          rm -f pockettrainer_clean_download.zip
-
-      - name: Commit and push
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: .
-          message: "Unpacked site zip"
+    // optional: simple Netlify Identity login/logout toggles
+    if (window.netlifyIdentity) {
+      netlifyIdentity.on('init', user => {
+        document.getElementById('loginBtn').style.display = user ? 'none' : 'inline-block';
+        document.getElementById('logoutBtn').style.display = user ? 'inline-block' : 'none';
+      });
+      var login = document.getElementById('loginBtn');
+      var logout = document.getElementById('logoutBtn');
+      if (login) login.addEventListener('click', () => netlifyIdentity.open('login'));
+      if (logout) logout.addEventListener('click', () => netlifyIdentity.logout());
+    }
+  </script>
+</body>
+</html>
