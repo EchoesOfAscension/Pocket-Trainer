@@ -1,0 +1,24 @@
+name: Unpack ZIP
+
+on:
+  workflow_dispatch:  # allows manual run from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Unzip archive
+        run: |
+          unzip -o pockettrainer_clean_download.zip -d .
+          rm -f pockettrainer_clean_download.zip
+
+      - name: Commit and push
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: .
+          message: "Unpacked site zip"
