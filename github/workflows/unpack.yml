@@ -1,20 +1,24 @@
-name: Unpack site zip
+name: Unpack ZIP
+
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # enables the "Run workflow" button
+
+permissions:
+  contents: write
 
 jobs:
   unzip:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
+
       - name: Unzip archive
         run: |
-          unzip -o pockettrainer_clean_site.zip -d .
-          rm -f pockettrainer_clean_site.zip
+          unzip -o pockettrainer_clean_download.zip -d .
+          rm -f pockettrainer_clean_download.zip
+
       - name: Commit and push
         uses: EndBug/add-and-commit@v9
         with:
-          add: "."
+          add: .
           message: "Unpacked site zip"
