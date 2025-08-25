@@ -1,23 +1,34 @@
+
 ---
 layout: layout.njk
-title: "{{ site.name }} – Dog training made simple"
+title: "Pocket Trainer — Dog training made simple"
 permalink: "/"
 eleventyExcludeFromCollections: true
 description: >
   Pocket Trainer — private 1:1 training plans, weekly tips, and newsletters.
 ---
 
-<section class="hero">
-  <div class="hero-card">
-    <span class="kicker">Pocket Trainer</span>
-    <h1>Personalized dog training in your pocket.</h1>
-    <p>{{ site.cta }}</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
-      <a class="button" href="/paywall/">Subscribe</a>
-      <button class="button secondary" onclick="netlifyIdentity && netlifyIdentity.open('login')">Log in</button>
+<section class="grid">
+  <div class="hero">
+    <div class="bg" style="background-image:url('/media/hero-collie.jpg');"></div>
+    <div class="overlay"></div>
+    <div class="content">
+      <span class="kicker">Pocket Trainer</span>
+      <h1>Improve your dog’s behavior</h1>
+      <p class="lead">Get expert training tips and advice sent to your inbox.</p>
+      <div class="actions">
+        <a class="button" href="/paywall/">Subscribe</a>
+        <button id="loginBtn" class="button secondary">Log in</button>
+      </div>
     </div>
-    <p class="notice">
-      This week: House training made simple · Loose-leash walking 101 · Enrichment games
-    </p>
+  </div>
+
+  <div class="card">
+    <h2>Get personalized advice</h2>
+    <p>Request custom training tips tailored to your dog.</p>
+    <div class="actions">
+      <a class="button" href="/paywall/">Get Advice</a>
+    </div>
+    <p class="notice">Already subscribed? Use the Log in button above.</p>
   </div>
 </section>

@@ -1,13 +1,12 @@
 {
-  "name": "pockettrainer",
-  "private": true,
+  "name": "pocket-trainer",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "dev": "npx @11ty/eleventy --serve --quiet",
-    "build": "npx @11ty/eleventy"
+    "build": "eleventy",
+    "start": "eleventy --serve --port=8080"
   },
   "dependencies": {
-    "@11ty/eleventy": "^2.0.0",
-    "stripe": "^14.0.0"
+    "@11ty/eleventy": "^2.0.1"
   }
 }

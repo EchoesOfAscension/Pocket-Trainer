@@ -1,20 +1,17 @@
-[build]
-  publish = "_site"
-  functions = "functions"
-  command = "npx @11ty/eleventy"
 
+[build]
+  command = "npx @11ty/eleventy"
+  publish = "_site"
+
+# Protect members for logged-in roles when Identity is enabled
 [[redirects]]
   from = "/members/*"
   to = "/members/index.html"
   status = 200
   conditions = { Role = ["subscriber", "admin"] }
 
+# Redirect unauthenticated visitors to paywall
 [[redirects]]
   from = "/members/*"
-  to = "/paywall/index.html"
+  to = "/paywall/"
   status = 302
-
-[[redirects]]
-  from = "/admin/*"
-  to = "/admin/index.html"
-  status = 200
